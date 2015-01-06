@@ -1,0 +1,7 @@
+
+<% field.fields.each_with_index do |field,i| %>
+
+  <input type="hidden" name="<%= path %>[fields][][id]" value="<%= field.id %>">
+  <input type="hidden" name="<%= path %>[fields][][type]" value="<%= field.type %>">
+  <b><%=i%></b><textarea name="<%= path %>[fields][][value]"><%= field.value %></textarea>
+<% end %>

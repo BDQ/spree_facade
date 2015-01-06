@@ -3,14 +3,20 @@ module Facade
     class Base
       include Virtus.model
       include ActiveModel::Validations
+      include ActiveModel::Conversion
+      extend ActiveModel::Naming
 
-      attribute :id, BSON::ObjectId, default: BSON::ObjectId.new.to_s
+      attribute :id, BSON::ObjectId, default: Proc.new { BSON::ObjectId.new.to_s }
       attribute :name, String
       attribute :required, Boolean, default: false
       attribute :language, String, default: 'en-US'
 
       attribute :engine, Symbol, default: :erubis
       attribute :template, String, default: :default_template
+
+      def persisted?
+        true
+      end
 
       def find(name)
         if self.name == name
@@ -22,8 +28,12 @@ module Facade
         end
       end
 
+      def type
+        self.class.to_s.split('::').last.tableize.singularize
+      end
+
       def hashify
-        self.attributes.merge type: self.class.to_s.split('::').last.tableize.singularize
+        self.attributes.merge type: type
       end
 
       def render

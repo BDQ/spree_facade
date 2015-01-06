@@ -3,8 +3,14 @@ module SpreeFacade
     require 'spree/core'
     require 'virtus'
     require 'inflecto'
+    require 'ejs'
+
     isolate_namespace Spree
     engine_name 'spree_facade'
+
+    #rake_tasks do
+      #%w{setup}.each { |r| load File.join([File.dirname(__FILE__) , "../tasks/#{r}.rake"]) }
+    #end
 
     # use rspec for tests
     config.generators do |g|

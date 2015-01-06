@@ -1,0 +1,19 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:editing_layout) %> <span class="green">"<%= @layout.name %>"</span>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/error_messages', :locals => { :target => @option_type } %>
+
+<%= form_for [:admin, @layout], url: admin_layout_url(@layout) do |f| %>
+  <fieldset>
+    <legend><%= Spree.t(:option_values) %></legend>
+
+    <%= render :partial => 'form', :locals => { :f => f } %>
+
+    <div class="form-actions" data-hook="buttons">
+      <%= button Spree.t('actions.update'), 'save' %>
+      <%= Spree.t(:or) %>
+      <%= button_link_to Spree.t('actions.cancel'), admin_layouts_path(@layout), :icon => "remove" %>
+    </div>
+  </fieldset>
+<% end %>

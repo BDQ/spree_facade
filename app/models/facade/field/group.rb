@@ -1,11 +1,13 @@
 module Facade
   module Field
     class Group < Base
-      attribute :fields, FieldSet
+      attribute :fields, FieldSet, default: []
+      attribute :min_children, Integer, default: 0
+      attribute :max_children, Integer
 
       def hashify
-        self.attributes.merge fields: fields.map(&:hashify),
-                              type: self.class.to_s.split('::').last.tableize.singularize
+        byebug if fields.nil?
+        self.attributes.merge fields: fields.map(&:hashify), type: type
       end
 
       def render

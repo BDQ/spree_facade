@@ -1,0 +1,19 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:editing_page) %> <span class="green">"<%= @page.name %>"</span>
+<% end %>
+
+<%= render :partial => 'spree/admin/shared/error_messages', :locals => { :target => @page } %>
+
+<%= form_for [:admin, @page], url: admin_page_path(@page) do |f| %>
+  <fieldset>
+    <legend><%= Spree.t(:pages) %></legend>
+
+    <%= render :partial => 'form', :locals => { :f => f } %>
+
+    <div class="form-actions" data-hook="buttons">
+      <%= button Spree.t('actions.update'), 'save' %>
+      <%= Spree.t(:or) %>
+      <%= button_link_to Spree.t('actions.cancel'), admin_layouts_path(@layout), :icon => "remove" %>
+    </div>
+  </fieldset>
+<% end %>

@@ -1,0 +1,4 @@
+<!-- insert_after "erb:contains(':admin, current_store')" -->
+<% if can? :admin, current_store %>
+  <%= main_menu_tree Spree.t(:content), icon: "film", sub_menu: "content" %>
+<% end %>

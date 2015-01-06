@@ -1,0 +1,34 @@
+
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_pages) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_order), new_admin_order_url, :class => "btn-success", :icon => 'add', :id => 'admin_new_order' %>
+<% end if can? :edit, Spree::Order.new %>
+
+<% if @pages.any? %>
+  <table class="table" id="listing_pages" data-hook>
+    <thead>
+      <tr>
+        <th><%= Spree.t(:name) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @pages.each do |page| %>
+      <tr <%= cycle('odd', 'even') %>">
+        <td><%= page.name %></td>
+        <td class="actions actions-1">
+          <%= link_to_edit_url edit_admin_page_path(page), :title => "admin_edit_#{dom_id(page)}", :no_text => true %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/page')) %>,
+    <%= link_to Spree.t(:add_one), spree.new_admin_page_path %>!
+  </div>
+<% end %>

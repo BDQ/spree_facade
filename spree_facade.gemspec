@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'inflecto', '~> 0.0.2'
   s.add_dependency 'bson', '~> 2.3.0'
   s.add_dependency 'redis', '~> 3.1.0'
+  s.add_dependency 'ejs', '~> 1.1.1'
 
 
   s.add_development_dependency 'capybara', '~> 2.4'

@@ -9,7 +9,7 @@ end
 Spree::Core::Engine.routes.draw do
   namespace :admin do
     resources :layouts
-    resources :pages
+    resources :resources
   end
 
   constraints(FacadeConstraint) do

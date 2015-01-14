@@ -1,8 +1,0 @@
-<blockquote style="margin-left: <%= level * 20 %>px;">
-  <input type="hidden" name="<%= path %>[id]" value="<%= field.id %>">
-  <input type="hidden" name="<%= path %>[type]" value="<%= field.type %>">
-  <h3><%= field.type.humanize %>: <input name="<%= path %>[name]" value="<%= field.name %>"></h3>
-  <textarea name="<%=path %>[template]" placeholder="Tempalte"><%= field.template %></textarea>
-
-  <%= render partial: field.type, locals: { field: field, path: path, level: level + 1}  %>
-</blockquote>

@@ -1,9 +1,9 @@
  module Spree
   class RenderController < StoreController
     def show
-      @page = store.find_by(Facade::Page, :slug, request.path)
+      @resource = store.find_by(Facade::Resource, :slug, request.path)
 
-      render text: @page.render, layout: true
+      render text: @resource.render, layout: true
     end
 
     private

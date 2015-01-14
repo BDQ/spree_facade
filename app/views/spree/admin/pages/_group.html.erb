@@ -1,7 +1,0 @@
-Group form
-
-    <% field.fields.each_with_index do |field,i| %>
-      <%= render partial: 'field', locals: { field: field,
-                                             path: "#{path}[fields][]",
-                                             level: level + 1 } %>
-    <% end %>
